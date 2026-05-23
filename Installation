@@ -1,0 +1,3 @@
+conda create -n stdn-md python=3.8 -y
+conda activate stdn-md
+pip install -r requirements.txt
