@@ -127,5 +127,5 @@ class STDN(nn.Module):
         x = x + skip1
         for blk in self.dec1: x = blk(x, mask)
 
-        # 直接返回特征图 [B, 48, H, W]
+        
         return x
