@@ -5,13 +5,13 @@ from torch.utils.data import DataLoader
 from tqdm import tqdm
 import datetime
 
-# 导入自定义模块
+
 from dataset_stage1_guided import GuidedLowLightDataset
 from stdna.model_stdn import STDN
 from model_l_mamba import L_Mamba
 from loss_stage1_guided import LMambaGuidedLoss
 
-# ================= 配置区域 =================
+
 PROJECT_ROOT = '/home/ubuntu/zpc/lunwen111/'
 DATA_ROOT = os.path.join(PROJECT_ROOT, 'dataset')
 SAVE_DIR = os.path.join(PROJECT_ROOT, 'experiments/stage1_guided_blur_3/')
@@ -57,12 +57,12 @@ def train():
 
     if RESUME:
         if os.path.exists(RESUME_STDN_PATH) and os.path.exists(RESUME_LMAMBA_PATH):
-            print(f"🔄 Resuming training from: {RESUME_STDN_PATH}")
+            print(f" Resuming training from: {RESUME_STDN_PATH}")
             stdn_model.load_state_dict(torch.load(RESUME_STDN_PATH, map_location=DEVICE))
             l_mamba_model.load_state_dict(torch.load(RESUME_LMAMBA_PATH, map_location=DEVICE))
-            print("✅ Checkpoints loaded successfully!")
+            print("Checkpoints loaded successfully!")
         else:
-            print("⚠️ Warning: Checkpoint files not found! Starting from scratch.")
+            print("Warning: Checkpoint files not found! Starting from scratch.")
 
 
     loss_func = LMambaGuidedLoss(
@@ -139,9 +139,9 @@ def train():
 
             torch.save(stdn_model.state_dict(), os.path.join(SAVE_DIR, 'stdn_best.pth'))
             torch.save(l_mamba_model.state_dict(), os.path.join(SAVE_DIR, 'l_mamba_best.pth'))
-            print("✨ New best model saved!")
+            print(" New best model saved!")
 
-    print("🎉 Training Finished!")
+    print(" Training Finished!")
 
 
 if __name__ == '__main__':
