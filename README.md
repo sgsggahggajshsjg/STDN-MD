@@ -46,3 +46,14 @@ STDN-MD/
 ├── requirements.txt
 ├── LICENSE
 └── README.md
+dataset/
+├── train/
+│   ├── low/
+│   ├── high/
+│   ├── mask/
+│   └── l_high_gen_blur_3/
+└── test/
+    ├── low/
+    ├── high/
+    ├── mask/
+    └── l_high_gen_blur_3/
