@@ -152,10 +152,10 @@ if __name__ == '__main__':
             print(f"Filenames in batch: {filenames}")
             print(f"Low shape: {low.shape}, Range: [{low.min():.3f}, {low.max():.3f}]")
             print(f"High shape: {high.shape}, Range: [{high.min():.3f}, {high.max():.3f}]")
-            # 重点检查 Mask 的值是否正确
+          
             print(f"Mask shape: {mask.shape}, Unique values (approx): {torch.unique(mask)}")
 
-            # 简单的断言检查
+          
             assert low.shape == high.shape
             assert mask.shape[1] == 1
             assert low.min() >= -1.0 and low.max() <= 1.0
