@@ -6,12 +6,11 @@ from torchvision.utils import save_image, make_grid
 from tqdm import tqdm
 import datetime
 
-# 导入模块
+
 from dataset_stage2 import Stage2Dataset
 from model_r_diffusion import HybridMambaUNet
 from loss_r_diffusion_guided import RDiffusionGuidedLoss
 
-# ================= 配置区域 =================
 PROJECT_ROOT = '/home/ubuntu/zpc/lunwen111/'
 DATA_ROOT = os.path.join(PROJECT_ROOT, 'dataset')
 
@@ -98,9 +97,9 @@ def train():
         val_dataset = Stage2Dataset(DATA_ROOT, 'test', img_size=IMG_SIZE)
         val_loader = DataLoader(val_dataset, batch_size=4, shuffle=False)
         fixed_val_batch = next(iter(val_loader))
-        print("✅ Fixed validation batch loaded from 'test' set.")
+        print("Fixed validation batch loaded from 'test' set.")
     except Exception as e:
-        print(f"⚠️ Could not load test set ({e}), using train set instead.")
+        print(f"Could not load test set ({e}), using train set instead.")
         val_loader = DataLoader(train_dataset, batch_size=4, shuffle=True)
         fixed_val_batch = next(iter(val_loader))
 
@@ -112,10 +111,10 @@ def train():
     model = HybridMambaUNet(in_channels=8, base_dim=64).to(DEVICE)
 
     if RESUME and os.path.exists(RESUME_WEIGHT_PATH):
-        print(f"🔄 Resuming from: {RESUME_WEIGHT_PATH}")
+        print(f" Resuming from: {RESUME_WEIGHT_PATH}")
         model.load_state_dict(torch.load(RESUME_WEIGHT_PATH, map_location=DEVICE))
     else:
-        print("🚀 Starting training from scratch (Recommended).")
+        print(" Starting training from scratch (Recommended).")
 
 
     loss_func = RDiffusionGuidedLoss(
@@ -183,7 +182,7 @@ def train():
             torch.save(model.state_dict(), os.path.join(SAVE_DIR, 'r_diffusion_best.pth'))
 
         if (epoch + 1) % VAL_INTERVAL == 0:
-            print(f"🎨 Sampling preview for Epoch {epoch + 1}...")
+            print(f" Sampling preview for Epoch {epoch + 1}...")
             model.eval()
             with torch.no_grad():
                 target_shape = val_low.shape
@@ -199,7 +198,7 @@ def train():
                 save_path = os.path.join(SAMPLE_DIR, f"epoch_{epoch + 1}.png")
                 save_image(grid, save_path, nrow=1, normalize=False)
 
-            print(f"🖼️ Preview saved to: {save_path}")
+            print(f" Preview saved to: {save_path}")
             model.train()
 
     log_file.close()
