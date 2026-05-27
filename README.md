@@ -1,4 +1,4 @@
-# STDN-MD
+# STDN-MD：In-Vehicle Low-Light Face Image Enhancement with Physical–Semantic Constrained Diffusion and Gated Selective State-Space Scanning
 Official PyTorch implementation of STDN-MD, accepted by Neural Networks.
 **In-Vehicle Low-Light Face Image Enhancement with Physical–Semantic Constrained Diffusion and Gated Selective State-Space Scanning**  
 *Neural Networks, 2026*
